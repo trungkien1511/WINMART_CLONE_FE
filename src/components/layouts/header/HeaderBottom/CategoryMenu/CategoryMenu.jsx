@@ -25,13 +25,8 @@ const CategoryMenu = () => {
 
             {isOpen && (
                 <>
-                    {/* Overlay mờ */}
-                    <div
-                        className='fixed inset-0 bg-black/50 z-40'
-                        onClick={handleMenuLeave} // click ra ngoài để đóng menu, nếu bạn muốn
-                    />
+                    <div className='fixed inset-0 bg-black/50 z-40' />
 
-                    {/* Menu + Submenu */}
                     <div
                         className='absolute left-0 top-0 z-50 flex w-6xl shadow-lg max-h-[90vh]'
                         onMouseLeave={() => handleMenuLeave()}
