@@ -1,7 +1,7 @@
 import { Mail, Headphones } from 'lucide-react';
 import { memo } from 'react';
 import NavLink from './NavLink';
-import CategoryMenu from './CategoryMenu/CategoryMenu';
+import CategoryMenu from '@features/categories/components/CategoryMenu';
 
 const HeaderBottom = () => {
     return (

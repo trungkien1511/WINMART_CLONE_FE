@@ -3,7 +3,7 @@ import { Menu as MenuIcon } from 'lucide-react';
 
 import CategoryItem from './CategoryItem';
 import SubMenu from './SubMenu';
-import { useCategoryMenu } from './useCategoryMenu';
+import { useCategoryMenu } from '../hooks/useCategoryMenu';
 
 const CategoryMenu = () => {
     const {
