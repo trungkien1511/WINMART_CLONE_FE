@@ -28,7 +28,7 @@ const CategoryMenu = () => {
                     <div className='fixed inset-0 bg-black/50 z-40' />
 
                     <div
-                        className='absolute left-0 top-0 z-50 flex w-6xl shadow-lg max-h-[90vh]'
+                        className='absolute left-0 top-0 z-50 flex w-6xl  max-h-[90vh]'
                         onMouseLeave={() => handleMenuLeave()}
                     >
                         <div className='bg-white basis-1/6'>
