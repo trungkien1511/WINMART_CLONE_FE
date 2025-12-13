@@ -14,6 +14,7 @@ const ProductDetail = () => {
     const { data: product } = useProductDetail(slug);
     const [selectedVariantId, setSelectedVariantId] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    console.log(quantity);
 
     const variants = useMemo(() => {
         return product.productPackaging;
@@ -48,14 +49,12 @@ const ProductDetail = () => {
                                 <span className='text-xs text-[#9999]'>SKU: {product.sku}</span>
                             </div>
                         </div>
-
                         <ProductPriceSummary
                             salePrice={selectedVariant.price}
                             originalPrice={selectedVariant.originalPrice}
                             inStock={selectedVariant.stock}
                             onSale={selectedVariant.onSale}
                         />
-
                         <ProductVariantSelector
                             variants={variants}
                             value={selectedVariantId} // truyền id (string)
@@ -64,11 +63,9 @@ const ProductDetail = () => {
 
                         <QuantitySelector
                             value={quantity}
-                            min={1}
-                            max={selectedVariant.stockQuantity}
                             onChange={setQuantity}
+                            max={selectedVariant.stockQuantity}
                         />
-
                         <div className='mt-6 w-[200px]'>
                             <AddToCartButton quantity={quantity} />
                         </div>
