@@ -1,24 +1,17 @@
 // features/products/components/QuantitySelector.jsx
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import Button from '../../../../components/ui/Button';
 
 const QuantitySelector = ({ label = 'Số lượng', value, max, onChange }) => {
-    const updateQuantity = useCallback(
-        (next) => {
-            if (next < 1) next = 1;
-            if (max != null && next > max) next = max;
-            onChange?.(next);
-        },
-        [max, onChange]
-    );
+    const updateQuantity = (next) => {
+        if (next < 1) next = 1;
+        if (max != null && next > max) next = max;
 
-    const handleDecrease = useCallback(() => {
-        updateQuantity(value - 1);
-    }, [value, updateQuantity]);
+        onChange(next);
+    };
 
-    const handleIncrease = useCallback(() => {
-        updateQuantity(value + 1);
-    }, [value, updateQuantity]);
+    const handleDecrease = () => updateQuantity(value - 1);
+    const handleIncrease = () => updateQuantity(value + 1);
 
     const isDecreaseDisabled = value <= 1;
     const isIncreaseDisabled = max != null && value >= max;
