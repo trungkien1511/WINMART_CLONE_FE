@@ -2,10 +2,10 @@ import { ChevronDown } from 'lucide-react';
 import Breadcrumb from '@components/common/Breadcrumb';
 import ProductGrid from '../../products/components/ProductGrid';
 import data_temp from '@app/data_temp';
-import { memo, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import Button from '@components/ui/Button';
 
-const HeaderFilter = ({ title, onChange, expanded }) => {
+const HeaderFilter = memo(({ title, onChange, expanded }) => {
     return (
         <>
             <button
@@ -14,13 +14,24 @@ const HeaderFilter = ({ title, onChange, expanded }) => {
             >
                 <span className='text-sm'>{title}</span>
 
-                <ChevronDown className='w-5 h-5 ' />
+                <ChevronDown
+                    className={`w-5 h-5 transition-transform duration-200 ${expanded ? 'rotate-180' : ''}`}
+                />
             </button>
         </>
     );
-};
-const CategoryFilter = ({ title, items, onItemClick }) => {
+});
+const CategoryFilter = memo(({ title, items, onItemClick }) => {
     const [isExpanded, setIsExpanded] = useState(true);
+
+    const handleItemClick = useCallback(
+        (category) => {
+            if (onItemClick) {
+                onItemClick(category);
+            }
+        },
+        [onItemClick]
+    );
 
     return (
         <div>
@@ -28,11 +39,16 @@ const CategoryFilter = ({ title, items, onItemClick }) => {
             {isExpanded && (
                 <div className='mx-2.5 mb-2.5 grid grid-cols-1 gap-2.5 text-sm'>
                     {items &&
-                        items.map((cat, index) => {
+                        items.map((cat) => {
                             return (
-                                <Button key={index} variant='header' className='bg-[#8080800d]'>
+                                <Button
+                                    key={cat.id}
+                                    variant='header'
+                                    className='bg-[#8080800d]'
+                                    onClick={() => handleItemClick(cat)}
+                                >
                                     <span className='text-xs text-foreground font-light'>
-                                        {cat}
+                                        {cat.catName}
                                     </span>
                                 </Button>
                             );
@@ -41,10 +57,19 @@ const CategoryFilter = ({ title, items, onItemClick }) => {
             )}
         </div>
     );
-};
+});
 
-const BrandFilter = ({ title, items, onBrandClick, className }) => {
+const BrandFilter = memo(({ title, items, className, onBrandClick }) => {
     const [isExpanded, setIsExpanded] = useState(true);
+
+    const handleBrandClick = useCallback(
+        (brand) => {
+            if (onBrandClick) {
+                onBrandClick(brand);
+            }
+        },
+        [onBrandClick]
+    );
 
     return (
         <div>
@@ -54,7 +79,12 @@ const BrandFilter = ({ title, items, onBrandClick, className }) => {
                     {items &&
                         items.map((brand, index) => {
                             return (
-                                <button key={index}>
+                                <button
+                                    key={index}
+                                    onClick={() => handleBrandClick(brand)}
+                                    type='button'
+                                    aria-label={`Lọc theo thương hiệu ${brand.brandName}`}
+                                >
                                     <div className='w-full h-full'>
                                         <img src={brand.imgLink} alt='' />
                                     </div>
@@ -65,7 +95,8 @@ const BrandFilter = ({ title, items, onBrandClick, className }) => {
             )}
         </div>
     );
-};
+});
+
 const CategorySidebar = memo(({ categories, brands }) => {
     return (
         <div className='flex flex-col flex-1 border-r border-divider '>
@@ -80,31 +111,42 @@ const CategoryToolbar = memo(({ sortOptions }) => {
     return (
         <div className='flex gap-2 mt-2.5 ml-2.5'>
             {sortOptions.map((option) => (
-                <Button key={option.value} children={option.label} variant='header' />
+                <Button key={option.value} variant='header'>
+                    {option.label}
+                </Button>
             ))}
         </div>
     );
 });
+const category_item = [
+    {
+        id: 1,
+        catName: 'Sữa tươi'
+    },
+    {
+        id: 2,
+        catName: 'Sữa chua'
+    }
+];
 
+const brand_item = [
+    {
+        id: 1,
+        brandName: 'Anchor',
+        imgLink: 'https://cdn-crownx.winmart.vn/images/prod/anchor.png'
+    },
+    {
+        id: 2,
+        brandName: 'Anchor',
+        imgLink: 'https://cdn-crownx.winmart.vn/images/prod/anchor.png'
+    }
+];
+
+const SORT_OPTIONS = [
+    { value: 'best-deal', label: 'Khuyến mãi tốt nhất' },
+    { value: 'best-selling', label: 'Bán chạy' }
+];
 const CategoryPage = () => {
-    const category_item = ['Sữa tươi', 'Sữa Hạt - Sữa Đậu', 'Sữa bột'];
-    const brand_item = [
-        {
-            id: 1,
-            brandName: 'Anchor',
-            imgLink: 'https://cdn-crownx.winmart.vn/images/prod/anchor.png'
-        },
-        {
-            id: 2,
-            brandName: 'Anchor',
-            imgLink: 'https://cdn-crownx.winmart.vn/images/prod/anchor.png'
-        }
-    ];
-
-    const SORT_OPTIONS = [
-        { value: 'best-deal', label: 'Khuyến mãi tốt nhất' },
-        { value: 'best-selling', label: 'Bán chạy' }
-    ];
     return (
         <div className='flex bg-white min-h-screen'>
             <CategorySidebar categories={category_item} brands={brand_item} />

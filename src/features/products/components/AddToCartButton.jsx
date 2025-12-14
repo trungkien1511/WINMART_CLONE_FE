@@ -1,26 +1,39 @@
-import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Button from '../../../components/ui/Button';
 
-// AddToCartButton.jsx
 const AddToCartButton = ({ product, quantity, className }) => {
-    const [loading, setLoading] = useState(false);
+    // const queryClient = useQueryClient();
 
-    const handleAddToCart = async () => {
-        try {
-            setLoading(true);
-            // gọi API / context addToCart(product, quantity)
-        } finally {
-            setLoading(false);
-        }
-    };
+    // const { mutate: addToCart, isPending } = useMutation({
+    //     mutationFn: async () => {
+    //         // Gọi API thêm vào giỏ hàng
+    //         const response = await fetch('/api/cart', {
+    //             method: 'POST',
+    //             body: JSON.stringify({ productId: product.id, quantity })
+    //         });
+    //         return response.json();
+    //     },
+    //     onSuccess: () => {
+    //         // Invalidate và refetch cart data
+    //         queryClient.invalidateQueries({ queryKey: ['cart'] });
+
+    //         // Optional: Hiển thị toast thành công
+    //         // toast.success('Đã thêm vào giỏ hàng');
+    //     },
+    //     onError: (error) => {
+    //         // Optional: Hiển thị toast lỗi
+    //         // toast.error('Không thể thêm vào giỏ hàng');
+    //         console.error(error);
+    //     }
+    // });
 
     return (
         <Button
             className={`w-full rounded-none ${className ?? ''}`}
-            onClick={handleAddToCart}
-            // disabled={loading || !product.inStock}
+            // onClick={() => addToCart()}
+            // disabled={isPending || !product.inStock}
         >
-            {loading ? 'Đang thêm...' : 'Thêm vào giỏ hàng'}
+            Thêm vào giỏ hàng
         </Button>
     );
 };
