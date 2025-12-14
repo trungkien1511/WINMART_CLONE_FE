@@ -14,7 +14,7 @@ const CategorySection = () => {
                         <h2 className='p-3 text-lg font-semibold'>{cat.name}</h2>
 
                         <div className='w-full bg-white flex flex-col gap-5 items-center'>
-                            <ProductGrid products={cat.products} />
+                            <ProductGrid products={cat.products} className='grid-cols-5' />
 
                             <div className='mb-5'>
                                 <Button

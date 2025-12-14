@@ -1,11 +1,11 @@
 import { memo, useCallback } from 'react';
 import ProductCard from './ProductCard';
 
-const ProductGrid = memo(({ products }) => {
+const ProductGrid = memo(({ products, className }) => {
     const handleAddToCart = useCallback(() => {}, []);
     return (
         <section className='w-full bg-white '>
-            <div className='grid grid-cols-5 gap-1'>
+            <div className={`grid  gap-1 ${className}`}>
                 {products.map((product) => (
                     <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} />
                 ))}

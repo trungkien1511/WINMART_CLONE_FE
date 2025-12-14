@@ -11,7 +11,7 @@ const ProductCard = memo(({ product, onAddToCart }) => {
 
     return (
         <article className='flex flex-col justify-between border border-gray-100 hover:border-brand-primary cursor-pointer shadow-full rounded-xl p-3'>
-            <Link to={`/product/${product.slug}`} className='block'>
+            <Link to={`/products/${product.slug}`} className='block'>
                 <ProductGalleryCard src={product.image} alt={product.name} />
                 <ProductInfo name={product.name} category={product.packagingType} />
             </Link>

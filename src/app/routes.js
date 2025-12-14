@@ -6,6 +6,7 @@ import MainLayout from '@app/layouts/MainLayout';
 const Home = lazy(() => import('@features/home/pages/HomePage'));
 const Login = lazy(() => import('@features/auth/Login'));
 const ProductDetailPage = lazy(() => import('@features/products/pages/ProductDetailPage'));
+const CategoryPage = lazy(() => import('@features/categories/pages/CategoryPage'));
 
 const routers = [
     {
@@ -19,8 +20,13 @@ const routers = [
         layout: AuthLayout
     },
     {
-        path: '/product/:slug',
+        path: '/products/:slug',
         component: ProductDetailPage,
+        layout: MainLayout
+    },
+    {
+        path: '/categories/test',
+        component: CategoryPage,
         layout: MainLayout
     }
 ];

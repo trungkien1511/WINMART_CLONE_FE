@@ -128,7 +128,7 @@ const FlashSale = () => {
     return (
         <section className='w-full flex flex-col gap-2'>
             <FlashSaleCountdown />
-            <ProductGrid products={PRODUCTS_DATA} />
+            <ProductGrid products={PRODUCTS_DATA} className='grid-cols-5' />
         </section>
     );
 };

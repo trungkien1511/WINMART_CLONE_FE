@@ -51,7 +51,7 @@
     --color-muted-foreground: #8b8b8b;
 
     /* Divider */
-    --color-divider: #e0e0e0;
+    --color-divider: #00000014;
 
     /* ==== Text size scale ==== */
     --text-xxs: 0.75rem; /* 12px */
@@ -111,32 +111,4 @@
     .btn--lg {
         @apply h-10 text-lg font-semibold;
     }
-}
-
-/* Container pagination */
-.product-main-swiper .swiper-pagination {
-    position: static; /* không đè lên ảnh */
-    margin-top: 12px;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-}
-
-/* Bullet có background là ảnh */
-.product-pagination-bullet {
-    width: 56px; /* ~14px x 4 */
-    height: 56px;
-    border-radius: 8px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border: 1px solid #e5e7eb;
-    opacity: 0.6;
-}
-
-/* Bullet đang active */
-.product-pagination-bullet.swiper-pagination-bullet-active {
-    opacity: 1;
-    border-color: #ef4444; /* màu brand/đỏ tuỳ bạn */
-    box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.3);
 }
