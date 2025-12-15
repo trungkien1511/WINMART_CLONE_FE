@@ -14,7 +14,8 @@ const CategoryMenu = () => {
         handleMenuEnter,
         handleMenuLeave,
         handleMouseEnterCategory,
-        handleMouseLeaveCategory
+        handleMouseLeaveCategory,
+        handleClickCategory
     } = useCategoryMenu();
     return (
         <div className='relative' onMouseEnter={handleMenuEnter} onMouseLeave={handleMenuLeave}>
@@ -38,11 +39,14 @@ const CategoryMenu = () => {
                                     category={category}
                                     onMouseEnter={() => handleMouseEnterCategory(category)}
                                     onMouseLeave={() => handleMouseLeaveCategory(category)}
+                                    onClick={() => handleClickCategory(category)}
                                 />
                             ))}
                         </div>
 
-                        {isOpenSubMenu && <SubMenu category={hoveredCategory} />}
+                        {isOpenSubMenu && (
+                            <SubMenu category={hoveredCategory} onClick={handleClickCategory} />
+                        )}
                     </div>
                 </>
             )}

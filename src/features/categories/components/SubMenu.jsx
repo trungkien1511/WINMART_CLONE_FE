@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 // Memoized SubMenu component
-const SubMenu = memo(({ category }) => {
+const SubMenu = memo(({ category, onClick }) => {
     if (!category?.children?.length) return null;
 
     return (
@@ -13,7 +13,7 @@ const SubMenu = memo(({ category }) => {
                     <ul className='flex flex-col flex-1'>
                         {category.children.map((child) => (
                             <li key={child.id} className='h-10 flex items-center'>
-                                <Link to={`category/${child.slug}`}>
+                                <Link to={`/categories/${child.slug}`} onClick={onClick}>
                                     <span className='text-sm font-bold'>{child.name}</span>
                                 </Link>
                             </li>

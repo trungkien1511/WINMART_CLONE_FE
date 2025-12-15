@@ -89,6 +89,16 @@ export const useCategoryMenu = () => {
         setHoveredCategory(null);
     }, [clearAllTimeouts]);
 
+    const handleClickCategory = useCallback(() => {
+        clearAllTimeouts?.(); // nếu có
+        if (switchTimeoutRef.current) clearTimeout(switchTimeoutRef.current);
+        if (outTimeoutRef.current) clearTimeout(outTimeoutRef.current);
+
+        setIsOpen(false);
+        setIsOpenSubMenu(false);
+        setHoveredCategory(null);
+    }, [clearAllTimeouts]);
+
     return {
         isOpen,
         isOpenSubMenu,
@@ -97,6 +107,7 @@ export const useCategoryMenu = () => {
         handleMenuEnter,
         handleMenuLeave,
         handleMouseEnterCategory,
-        handleMouseLeaveCategory
+        handleMouseLeaveCategory,
+        handleClickCategory
     };
 };
