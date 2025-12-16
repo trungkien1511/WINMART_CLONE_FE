@@ -25,7 +25,7 @@ const routers = [
         layout: MainLayout
     },
     {
-        path: '/categories/test',
+        path: '/categories/:slug',
         component: CategoryPage,
         layout: MainLayout
     }

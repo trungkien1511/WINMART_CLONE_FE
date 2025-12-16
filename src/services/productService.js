@@ -1,8 +1,15 @@
-import axios from './axiosClient';
+import axiosClient from './axiosClient';
 
 const productService = {
     getProductDetail(slug, config = {}) {
-        return axios.get(`/product/${slug}`, config);
+        return axiosClient.get(`/product/${slug}`, config);
+    },
+    getProductsByCategoryPath(parentSlug, childSlug, config = {}) {
+        const url = childSlug
+            ? `/category/${parentSlug}/${childSlug}/products`
+            : `/category/${parentSlug}/products`;
+
+        return axiosClient.get(url, config);
     }
 };
 

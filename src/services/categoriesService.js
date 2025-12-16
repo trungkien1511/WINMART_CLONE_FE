@@ -1,7 +1,10 @@
 import axiosClient from './axiosClient';
 const categoriesService = {
     getAll(config = {}) {
-        return axiosClient.get('/categories/tree', config);
+        return axiosClient.get('/category/tree', config);
+    },
+    getCategoriesChild(slug) {
+        return axiosClient.get(`/category/${slug}`);
     }
 };
 

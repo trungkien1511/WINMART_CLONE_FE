@@ -4,6 +4,11 @@ import ProductGrid from '../../products/components/ProductGrid';
 import data_temp from '@app/data_temp';
 import { memo, useCallback, useState } from 'react';
 import Button from '@components/ui/Button';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import productService from '@services/productService';
+import categoryService from '@services/categoriesService';
+import brandService from '@services/brandService';
 
 const HeaderFilter = memo(({ title, onChange, expanded }) => {
     return (
@@ -41,14 +46,9 @@ const CategoryFilter = memo(({ title, items, onItemClick }) => {
                     {items &&
                         items.map((cat) => {
                             return (
-                                <Button
-                                    key={cat.id}
-                                    variant='header'
-                                    className='bg-[#8080800d]'
-                                    onClick={() => handleItemClick(cat)}
-                                >
+                                <Button key={cat.id} variant='header' onClick={() => cat}>
                                     <span className='text-xs text-foreground font-light'>
-                                        {cat.catName}
+                                        {cat.name}
                                     </span>
                                 </Button>
                             );
@@ -76,17 +76,17 @@ const BrandFilter = memo(({ title, items, className, onBrandClick }) => {
             <HeaderFilter title={title} expanded={isExpanded} onChange={setIsExpanded} />
             {isExpanded && (
                 <div className={`mx-2.5 mb-2.5 grid gap-2.5 ${className}`}>
-                    {items &&
+                    {Array.isArray(items) &&
                         items.map((brand, index) => {
                             return (
                                 <button
                                     key={index}
                                     onClick={() => handleBrandClick(brand)}
                                     type='button'
-                                    aria-label={`Lọc theo thương hiệu ${brand.brandName}`}
+                                    aria-label={`Lọc theo thương hiệu ${brand.name}`}
                                 >
                                     <div className='w-full h-full'>
-                                        <img src={brand.imgLink} alt='' />
+                                        <img src={brand.logoUrl} alt='' />
                                     </div>
                                 </button>
                             );
@@ -98,6 +98,8 @@ const BrandFilter = memo(({ title, items, className, onBrandClick }) => {
 });
 
 const CategorySidebar = memo(({ categories, brands }) => {
+    console.log('brands type:', typeof brands, 'isArray:', Array.isArray(brands), brands);
+
     return (
         <div className='flex flex-col flex-1 border-r border-divider '>
             <CategoryFilter title={'Sữa các loại'} items={categories} />
@@ -147,9 +149,41 @@ const SORT_OPTIONS = [
     { value: 'best-selling', label: 'Bán chạy' }
 ];
 const CategoryPage = () => {
+    const { slug } = useParams();
+
+    const { data: products } = useQuery({
+        queryKey: ['product', slug], // Cache key
+        queryFn: async () => {
+            const res = await productService.getProductsByCategoryPath(slug);
+            return res.data;
+        },
+        enabled: !!slug,
+        suspense: true
+    });
+
+    const { data: categories } = useQuery({
+        queryKey: ['category', slug],
+        queryFn: async () => {
+            const res = await categoryService.getCategoriesChild(slug);
+            return res.data;
+        },
+        enabled: !!slug,
+        suspense: true
+    });
+
+    const { data: brands } = useQuery({
+        queryKey: ['brand', slug],
+        queryFn: async () => {
+            const res = await brandService.getBrandsByCat(slug);
+            return res.data;
+        },
+        enabled: !!slug,
+        suspense: true
+    });
+
     return (
         <div className='flex bg-white min-h-screen'>
-            <CategorySidebar categories={category_item} brands={brand_item} />
+            <CategorySidebar categories={categories} brands={brands} />
             <main className='flex-4'>
                 <CategoryToolbar sortOptions={SORT_OPTIONS} />
                 <hr className='border-divider my-2' />
@@ -166,7 +200,7 @@ const CategoryPage = () => {
                             }
                         ]}
                     />
-                    <ProductGrid products={data_temp} className='grid-cols-4' />
+                    <ProductGrid products={products} className='grid-cols-4' />
                 </div>
             </main>
         </div>
