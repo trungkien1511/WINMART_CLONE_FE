@@ -4,7 +4,7 @@ const productService = {
     getProductDetail(slug, config = {}) {
         return axiosClient.get(`/product/${slug}`, config);
     },
-    getProductsByCategoryPath(parentSlug, childSlug, config = {}) {
+    getProductsByCategorySlug(parentSlug, childSlug, config = {}) {
         const url = childSlug
             ? `/category/${parentSlug}/${childSlug}/products`
             : `/category/${parentSlug}/products`;

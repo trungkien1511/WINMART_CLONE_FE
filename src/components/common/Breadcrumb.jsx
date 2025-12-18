@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 const Breadcrumb = ({ items, className = '' }) => {
     return (
         <nav className={`flex text-xs text-foreground ${className}`}>
+            <Link to={'/'}>{'Trang chủ'}</Link>
+            <span className='mx-1'>/</span>
             {items.map((item, index) => {
                 const isLast = index === items.length - 1;
 

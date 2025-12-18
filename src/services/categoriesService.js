@@ -3,7 +3,7 @@ const categoriesService = {
     getAll(config = {}) {
         return axiosClient.get('/category/tree', config);
     },
-    getCategoriesChild(slug) {
+    getCategoriesTree(slug) {
         return axiosClient.get(`/category/${slug}`);
     }
 };

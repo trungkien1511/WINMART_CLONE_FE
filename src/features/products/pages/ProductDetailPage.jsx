@@ -80,7 +80,10 @@ const ProductDetail = () => {
                             <div className='px-4 py-3'>
                                 <span>Sản phẩm liên quan</span>
                             </div>
-                            <ProductGrid products={product.relatedProducts} />
+                            <ProductGrid
+                                products={product.relatedProducts}
+                                className='grid-cols-5'
+                            />
                         </>
                     )}
                 </div>
