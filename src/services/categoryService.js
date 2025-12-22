@@ -1,5 +1,5 @@
 import axiosClient from './axiosClient';
-const categoriesService = {
+const categoryService = {
     getAll(config = {}) {
         return axiosClient.get('/category/tree', config);
     },
@@ -8,4 +8,4 @@ const categoriesService = {
     }
 };
 
-export default categoriesService;
+export default categoryService;

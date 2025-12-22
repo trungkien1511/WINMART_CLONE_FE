@@ -19,11 +19,12 @@ const ProductCard = memo(({ product, onAddToCart }) => {
                 <ProductPrice
                     originalPrice={product.originalPrice}
                     salePrice={product.finalPrice}
+                    isOnSale={product.onSale}
                 />
                 <Button
                     onClick={handleAddToCart}
                     variant='secondary'
-                    icon={<ShoppingCart size={16} />}
+                    startIcon={<ShoppingCart size={16} />}
                     children='Thêm giỏ hàng'
                     className='w-full'
                 />

@@ -4,7 +4,7 @@ import ProductPriceSummary from '../components/ProductDetail/ProductPriceDetail'
 import ProductVariantSelector from '../components/ProductDetail/ProductVariantSelector';
 import { useMemo, useState } from 'react';
 import QuantitySelector from '../components/ProductDetail/QualitySelector';
-import AddToCartButton from '../components/AddToCartButton';
+import AddToCartButton from '../components/ProductDetail/AddToCartButton';
 import { useParams } from 'react-router-dom';
 import product_temp from '@assets/images/product_temp.png';
 import { useProductDetail } from '../hooks/useProductDetail';
@@ -32,15 +32,15 @@ const ProductDetail = () => {
             />
 
             <div className='flex bg-white '>
-                <div className='max-w-[450px] w-full px-3.75 pb-13.75'>
+                <div className='max-w-112.5 w-full px-3.75 pb-13.75'>
                     <div className='flex items-center h-fit'>
-                        <div className='pb-[100px]'>
+                        <div className='pb-25'>
                             <img src={product_temp} alt='' />
                         </div>
                     </div>
                 </div>
                 <div className='max-w-2/3 w-full'>
-                    <div className='flex flex-col px-[15px] py-[30px] text-foreground'>
+                    <div className='flex flex-col px-3.75 py-7.5 text-foreground'>
                         <div className='mb-2.5'>
                             <div>
                                 <h1 className='text-xl'>{product.name}</h1>
@@ -66,7 +66,7 @@ const ProductDetail = () => {
                             onChange={setQuantity}
                             max={selectedVariant.stockQuantity}
                         />
-                        <div className='mt-6 w-[200px]'>
+                        <div className='mt-6 w-50'>
                             <AddToCartButton quantity={quantity} />
                         </div>
                     </div>

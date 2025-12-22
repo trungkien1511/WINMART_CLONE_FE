@@ -1,15 +1,13 @@
 import axiosClient from './axiosClient';
 
 const productService = {
-    getProductDetail(slug, config = {}) {
-        return axiosClient.get(`/product/${slug}`, config);
+    getProductDetail(slug) {
+        return axiosClient.get(`/product/${slug}`);
     },
-    getProductsByCategorySlug(parentSlug, childSlug, config = {}) {
-        const url = childSlug
-            ? `/category/${parentSlug}/${childSlug}/products`
-            : `/category/${parentSlug}/products`;
-
-        return axiosClient.get(url, config);
+    getProductsByCategorySlug(slug, params = {}) {
+        return axiosClient.get(`/category/${slug}/products`, {
+            params
+        });
     }
 };
 

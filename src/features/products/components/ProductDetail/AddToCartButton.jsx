@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import Button from '../../../components/ui/Button';
+import Button from '../../../../components/ui/Button';
 
 const AddToCartButton = ({ product, quantity, className }) => {
     // const queryClient = useQueryClient();

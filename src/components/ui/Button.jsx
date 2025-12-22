@@ -15,7 +15,9 @@ const Button = memo(
         const variantClass = {
             primary: 'btn--primary',
             secondary: 'btn--secondary',
-            header: 'justify-start text-left text-xs font-light border-none bg-[#8080800d] px-2 py-2.5 cursor-pointer'
+            normal: 'justify-start text-left text-xs font-light border-none bg-[#8080800d] px-2 py-2.5 cursor-pointer',
+            normal_active:
+                'justify-start text-left text-xs font-light border-none bg-[#8080800d] px-2 py-2.5 cursor-pointer ring ring-brand-primary'
         }[variant];
 
         const sizeClass = {

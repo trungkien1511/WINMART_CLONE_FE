@@ -1,7 +1,7 @@
 // CategoryMenu/useCategoryMenu.js
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import categoriesService from '@services/categoriesService.js';
+import categoryService from '@services/categoryService.js';
 
 export const useCategoryMenu = () => {
     // Constants
@@ -34,7 +34,7 @@ export const useCategoryMenu = () => {
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await categoriesService.getAll();
+            const res = await categoryService.getAll();
             return res.data;
         }
     });

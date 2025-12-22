@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import routes from './routes';
 import { QueryProvider } from './provider/QueryProvider';
 import ScrollToTop from '../components/ui/ScrollToTop';
+import Delayed from '../components/ui/Delayed';
 
 export default function AppRoutes() {
     return (
@@ -19,11 +20,17 @@ export default function AppRoutes() {
                                 key={idx}
                                 path={route.path}
                                 element={
-                                    <Layout>
-                                        <Suspense>
+                                    <Suspense
+                                        fallback={
+                                            <Delayed ms={200}>
+                                                <div className='min-h-screen w-full bg-white' />
+                                            </Delayed>
+                                        }
+                                    >
+                                        <Layout>
                                             <Component />
-                                        </Suspense>
-                                    </Layout>
+                                        </Layout>
+                                    </Suspense>
                                 }
                             />
                         );
