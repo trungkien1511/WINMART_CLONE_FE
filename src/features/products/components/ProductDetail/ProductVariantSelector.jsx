@@ -11,7 +11,7 @@ const ProductVariantSelector = ({ variants, value, setSelectedVariantId }) => {
                     <div className='flex gap-1'>
                         {variants.map((variant) => (
                             <Button
-                                key={variant.packagingTypeId}
+                                key={variant.productPackagingId}
                                 type='button'
                                 className='px-3.75 py-3.75 rounded-none'
                                 variant={
