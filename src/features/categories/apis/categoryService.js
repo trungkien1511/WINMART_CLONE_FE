@@ -1,4 +1,5 @@
-import axiosClient from './axiosClient';
+import axiosClient from '@services/axiosClient';
+
 const categoryService = {
     getAll(config = {}) {
         return axiosClient.get('/category/tree', config);

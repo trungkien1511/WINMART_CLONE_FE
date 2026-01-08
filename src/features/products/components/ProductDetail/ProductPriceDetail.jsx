@@ -2,12 +2,10 @@
 
 import { formatPrice } from '../../utils/formatPrice';
 
-const ProductPriceSummary = ({ originalPrice, salePrice, inStock, onSale }) => {
+const ProductPriceSummary = ({ originalPrice, price, inStock, onSale }) => {
     const showOriginal =
-        onSale &&
-        originalPrice != null &&
-        salePrice != null &&
-        Number(originalPrice) > Number(salePrice);
+        onSale && originalPrice != null && price != null && Number(originalPrice) > Number(price);
+    console.log(onSale);
 
     return (
         <div className='p-2.5 bg-[url(https://winmart.vn/_next/static/images/bg-product-1fb6a3ec6319488c0e5d03e99a3500c4.jpg)]'>
@@ -18,7 +16,7 @@ const ProductPriceSummary = ({ originalPrice, salePrice, inStock, onSale }) => {
                             <span>Giá niêm yết</span>
                         </div>
                         <div className='basis-3/4'>
-                            <del>{formatPrice(originalPrice)} ₫</del>
+                            <del>{formatPrice(originalPrice)}</del>
                         </div>
                     </div>
                 )}
@@ -28,9 +26,7 @@ const ProductPriceSummary = ({ originalPrice, salePrice, inStock, onSale }) => {
                         <span>{showOriginal ? 'Giá khuyến mại' : 'Giá bán lẻ'}</span>
                     </div>
                     <div className='basis-3/4'>
-                        <span className='text-brand-primary text-base'>
-                            {formatPrice(salePrice)} ₫
-                        </span>
+                        <span className='text-brand-primary text-base'>{formatPrice(price)}</span>
                     </div>
                 </div>
 

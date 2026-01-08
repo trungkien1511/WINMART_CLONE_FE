@@ -6,8 +6,8 @@ const Button = memo(
         children,
         startIcon,
         endIcon,
-        variant = 'primary', // primary | secondary
-        size = 'md', // sm | md | lg
+        variant = 'primary',
+        size = 'md',
         isLoading = false,
         className,
         ...rest
@@ -15,9 +15,9 @@ const Button = memo(
         const variantClass = {
             primary: 'btn--primary',
             secondary: 'btn--secondary',
-            normal: 'justify-start text-left text-xs font-light border-none bg-[#8080800d] px-2 py-2.5 cursor-pointer',
+            normal: 'flex gap-2 item-center justify-start text-xs font-light bg-[#8080800d] px-2 py-2.5 cursor-pointer',
             normal_active:
-                'justify-start text-left text-xs font-light border-none bg-[#8080800d] px-2 py-2.5 cursor-pointer ring ring-brand-primary'
+                'justify-start text-left text-xs font-light bg-[#8080800d] px-2 py-2.5 cursor-pointer ring ring-brand-primary'
         }[variant];
 
         const sizeClass = {
@@ -30,20 +30,28 @@ const Button = memo(
             <button
                 {...rest}
                 disabled={isLoading || rest.disabled}
-                className={clsx('btn', variantClass, sizeClass, className)}
+                aria-busy={isLoading}
+                className={clsx('btn', variantClass, sizeClass, className, {
+                    'opacity-60 cursor-not-allowed': isLoading
+                })}
             >
                 {isLoading ? (
-                    <span>Đang xử lý...</span>
+                    <span className='flex items-center gap-2'>
+                        {/* Optional: Thêm spinner icon */}
+                        <span>Đang xử lý...</span>
+                    </span>
                 ) : (
                     <>
-                        {startIcon && <span>{startIcon}</span>}
-                        <span>{children}</span>
-                        {endIcon && <span>{endIcon}</span>}
+                        {startIcon}
+                        {children}
+                        {endIcon}
                     </>
                 )}
             </button>
         );
     }
 );
+
+Button.displayName = 'Button';
 
 export default Button;

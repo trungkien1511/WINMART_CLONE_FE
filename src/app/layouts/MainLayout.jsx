@@ -10,7 +10,7 @@ export default function MainLayout({ children }) {
                 role='main'
                 className='flex flex-1 min-h-0 justify-center bg-background-neutral transition-colors duration-300'
             >
-                <div className='flex flex-col w-full max-w-6xl mt-1 gap-2 pb-6'>{children}</div>
+                <div className='flex flex-col w-full max-w-6xl gap-2 '>{children}</div>
             </main>
 
             <Footer />

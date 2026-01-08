@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import brandService from '@services/brandService';
+import brandService from '../apis/brandService';
 
 /**
  * Hook để fetch brands theo category

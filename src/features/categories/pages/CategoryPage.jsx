@@ -4,14 +4,14 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import Breadcrumb from '@components/common/Breadcrumb';
 import ProductGrid from '../../products/components/ProductGrid';
 
-import { useProductsByCategory } from '../hooks/useProductCategory';
+import { useProductsByCategory } from '../../products/hooks/useProductCategory';
 import { useCategoriesTree } from '../hooks/useCategoriesTree';
 
-import CategorySidebar from './components/CategorySidebar';
-import CategoryToolbar from './components/CategoryToolbar';
+import CategorySidebar from '../components/category_page/CategorySidebar';
+import CategoryToolbar from '../components/category_page/CategoryToolbar';
 
-import { SORT_OPTIONS } from './constants/sortOptions';
-import { parseBrandsParam, buildBreadcrumbs } from './utils/categoryHelpers';
+import { SORT_OPTIONS } from '../constants/sortOptions';
+import { parseBrandsParam, buildBreadcrumbs } from '../utils/categoryHelper';
 import { useBrandsByCategory } from '../hooks/useBrandsByCategory';
 
 const CategoryPage = () => {

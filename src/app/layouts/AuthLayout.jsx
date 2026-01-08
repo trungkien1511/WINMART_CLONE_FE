@@ -1,40 +1,34 @@
-import { Box, IconButton } from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import HomeIcon from '@mui/icons-material/Home';
-import { Link as RouterLink } from 'react-router-dom';
-import logo from '/src/assets/icons/redlogo.svg';
+import { ArrowLeft, House } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import logo from '@assets/icons/redLogo.svg';
 
 export default function AuthLayout({ children }) {
     return (
-        <Box bgcolor='#f0f8ff' display='flex' justifyContent='center' minHeight='100vh'>
-            <Box
-                display='flex'
-                flexDirection='column'
-                alignItems='center'
-                bgcolor='white'
-                width={{ xs: '90%', sm: 400 }}
-                p={4}
-            >
-                {/* Header chung */}
-                <Box
-                    width='100%'
-                    display='flex'
-                    justifyContent='space-between'
-                    alignItems='center'
-                    mb={4}
-                >
-                    <IconButton component={RouterLink} to='/'>
-                        <ArrowBackIcon />
-                    </IconButton>
-                    <Box component='img' src={logo} alt='Logo' sx={{ height: 40 }} />
-                    <IconButton component={RouterLink} to='/'>
-                        <HomeIcon />
-                    </IconButton>
-                </Box>
+        <main className='bg-[#f0f8ff] flex justify-center min-h-screen'>
+            <div className='flex flex-col items-center bg-white max-w-105 w-full p-8'>
+                {/* Header */}
+                <div className='w-full flex justify-between items-center'>
+                    <Link to='/' className='p-2'>
+                        <ArrowLeft className='w-6 h-6 text-gray-600' />
+                    </Link>
 
-                {/* Nội dung của từng trang (Login, Register...) */}
+                    <div className='h-11'>
+                        <img
+                            src={logo}
+                            alt='WinMart Logo'
+                            className='h-full w-auto object-contain'
+                            loading='eager'
+                        />
+                    </div>
+
+                    <Link to='/' className='p-2'>
+                        <House className='w-6 h-6 text-gray-600' />
+                    </Link>
+                </div>
+
+                {/* Nội dung */}
                 {children}
-            </Box>
-        </Box>
+            </div>
+        </main>
     );
 }

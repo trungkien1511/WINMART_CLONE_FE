@@ -1,3 +1,4 @@
+import { ChevronRight } from 'lucide-react';
 import { memo } from 'react';
 
 const HeaderFilter = memo(({ title, onChange, expanded }) => {

@@ -186,7 +186,7 @@ const Banner = () => {
     }, []);
 
     return (
-        <section className='w-full'>
+        <section className='max-w-full w-full mt-1'>
             {/* <button onClick={() => setCount(count + 1)}>Click</button> */}
             <div className='grid grid-cols-4 gap-1.5 '>
                 {/* Left: Main Slider */}

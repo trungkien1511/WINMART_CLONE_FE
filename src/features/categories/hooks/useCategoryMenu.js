@@ -1,7 +1,7 @@
 // CategoryMenu/useCategoryMenu.js
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import categoryService from '@services/categoryService.js';
+import categoryService from '../apis/categoryService';
 
 export const useCategoryMenu = () => {
     // Constants

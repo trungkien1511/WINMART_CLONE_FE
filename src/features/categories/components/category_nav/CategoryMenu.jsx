@@ -54,4 +54,4 @@ const CategoryMenu = () => {
     );
 };
 
-export default memo(CategoryMenu);
+export default CategoryMenu;

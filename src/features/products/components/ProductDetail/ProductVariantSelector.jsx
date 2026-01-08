@@ -13,11 +13,11 @@ const ProductVariantSelector = ({ variants, value, setSelectedVariantId }) => {
                             <Button
                                 key={variant.packagingTypeId}
                                 type='button'
-                                className='px-[15px] py-[5px] rounded-none'
+                                className='px-3.75 py-3.75 rounded-none'
                                 variant={
-                                    value === variant.packagingTypeId ? 'primary' : 'secondary'
+                                    value === variant.productPackagingId ? 'primary' : 'secondary'
                                 }
-                                onClick={() => setSelectedVariantId(variant.packagingTypeId)}
+                                onClick={() => setSelectedVariantId(variant.productPackagingId)}
                             >
                                 {variant.packagingTypeName}
                             </Button>

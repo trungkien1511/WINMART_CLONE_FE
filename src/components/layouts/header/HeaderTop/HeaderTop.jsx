@@ -8,7 +8,7 @@ const HeaderTop = ({ onSearch, cartCount = 0, userName }) => {
     const navigate = useNavigate();
     return (
         <div className='flex flex-wrap items-center justify-between max-w-6xl mx-auto py-4 gap-3 bg-brand-primary text-white'>
-            <div className='flex items-center gap-3 flex-1 min-w-[300px] '>
+            <div className='flex items-center gap-3 flex-1 min-w-75 '>
                 <img
                     src={homeLogo}
                     onClick={() => navigate('/')}

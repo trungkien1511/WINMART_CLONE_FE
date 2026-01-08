@@ -5,17 +5,12 @@ const axiosClient = axios.create({
     headers: {
         'Content-Type': 'application/json'
     },
-    timeout: 10000
+    timeout: 10000,
+    withCredentials: true
 });
 
 axiosClient.interceptors.request.use(
-    (config) => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-    },
+    (config) => config,
     (error) => Promise.reject(error)
 );
 
@@ -23,19 +18,14 @@ axiosClient.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response) {
-            console.error(
-                `[API Error] ${error.response.status}:`,
-                error.response.data || error.message
-            );
+            const { status, config } = error.response;
+            if (!(status === 401 && config.url?.includes('/auth/me'))) {
+                console.error(`[API Error] ${status}:`, error.response.data);
+            }
         } else if (error.request) {
             console.error('[Network Error] Server not responding');
         } else {
             console.error('[Config Error]', error.message);
-        }
-
-        if (error.response?.status === 401) {
-            localStorage.removeItem('token');
-            // window.location.href = '/login';
         }
 
         return Promise.reject(error);

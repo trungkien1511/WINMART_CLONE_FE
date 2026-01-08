@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import categoryService from '../../../services/categoryService';
+import categoryService from '../apis/categoryService';
 
 export const useCategoriesTree = (slug) => {
     return useQuery({
