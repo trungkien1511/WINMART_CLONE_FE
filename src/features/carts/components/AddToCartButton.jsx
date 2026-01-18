@@ -7,11 +7,12 @@ const AddToCartButton = ({ inStock, quantity = 1, product, className }) => {
 
     return (
         <Button
-            className={`w-full rounded-none ${className ?? ''}`}
+            variant='primary_1'
             onClick={() => addToCartMutation.mutate({ productPackagingId, quantity })}
             disabled={!inStock}
+            className='w-full'
         >
-            Thêm vào giỏ hàng
+            THÊM VÀO GIỎ
         </Button>
     );
 };

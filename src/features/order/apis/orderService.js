@@ -2,7 +2,7 @@ import axiosClient from '../../../services/axiosClient';
 
 const orderService = {
     create: (payload) => axiosClient.post('/orders', payload),
-    getDetail: (orderId) => axiosClient.get(`/api/orders/${orderId}`)
+    getDetail: (orderCode) => axiosClient.get(`/orders/${orderCode}`)
 };
 
 export default orderService;

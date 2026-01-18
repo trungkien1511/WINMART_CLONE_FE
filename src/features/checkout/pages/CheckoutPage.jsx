@@ -6,7 +6,7 @@ import { useGetCheckout } from '../hooks/useGetCheckout';
 import InfoForm from '../components/InfoForm';
 import PaymentForm from '../components/PaymentForm';
 import NoteForm from '../components/NoteForm';
-import OrderSummary from '../components/OrderSummary';
+import { OrderSummary } from '../components/OrderSummary';
 import { useCheckoutSubmit } from '../../order/hooks/useCheckoutSubmit';
 
 const CheckoutPage = () => {
