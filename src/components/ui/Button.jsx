@@ -14,10 +14,11 @@ const Button = memo(
     }) => {
         const variantClass = {
             primary: 'btn--primary',
+            primary_1: 'btn--primary-1',
             secondary: 'btn--secondary',
-            normal: 'flex gap-2 item-center justify-start text-xs font-light bg-[#8080800d] px-2 py-2.5 cursor-pointer',
-            normal_active:
-                'justify-start text-left text-xs font-light bg-[#8080800d] px-2 py-2.5 cursor-pointer ring ring-brand-primary'
+            secondary_1: 'btn--secondary-1',
+            normal: 'btn--normal',
+            normal_active: 'btn--normal-active'
         }[variant];
 
         const sizeClass = {

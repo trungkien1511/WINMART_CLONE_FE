@@ -15,7 +15,9 @@ const ProductVariantSelector = ({ variants, value, setSelectedVariantId }) => {
                                 type='button'
                                 className='px-3.75 py-3.75 rounded-none'
                                 variant={
-                                    value === variant.productPackagingId ? 'primary' : 'secondary'
+                                    value === variant.productPackagingId
+                                        ? 'primary_1'
+                                        : 'secondary_1'
                                 }
                                 onClick={() => setSelectedVariantId(variant.productPackagingId)}
                             >

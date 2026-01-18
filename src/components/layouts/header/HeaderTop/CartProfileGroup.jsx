@@ -71,7 +71,7 @@ const ProfilePart = () => {
                 aria-label={`Trang cá nhân của ${user?.phone ?? ''}`}
             >
                 <User className='w-6 h-6' />
-                <span>{user?.phone}</span>
+                <span>{user?.fullName}</span>
             </Link>
             <MenuProfile menu_items={menu_items} />
         </div>

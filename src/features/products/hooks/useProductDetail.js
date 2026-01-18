@@ -8,7 +8,6 @@ export const useProductDetail = (slug) => {
             const res = await productService.getProductDetail(slug);
             return res.data;
         },
-        enabled: !!slug,
-        suspense: true
+        enabled: !!slug
     });
 };

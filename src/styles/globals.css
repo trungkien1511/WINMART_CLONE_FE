@@ -91,24 +91,35 @@
 
 @layer components {
     .btn {
-        @apply inline-flex items-center justify-center gap-2 rounded-md cursor-pointer
-           focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+        @apply inline-flex items-center justify-center gap-2 cursor-pointer;
     }
     .btn--primary {
-        @apply border bg-brand-primary text-white border-brand-primary;
+        @apply border bg-brand-primary text-white border-brand-primary font-semibold rounded-md;
+    }
+    .btn--primary-1 {
+        @apply border bg-brand-primary text-white border-brand-primary font-light rounded-sm;
     }
     .btn--secondary {
-        @apply bg-white text-brand-primary border border-brand-primary;
+        @apply bg-white text-brand-primary border border-brand-primary font-semibold rounded-md;
+    }
+    .btn--secondary-1 {
+        @apply bg-white text-brand-primary border border-brand-primary font-light rounded-sm;
+    }
+    .btn--normal {
+        @apply justify-start text-xs font-light bg-[#8080800d] px-2 py-2.5 rounded-xs;
+    }
+    .btn--normal-active {
+        @apply justify-start text-xs font-light bg-[#8080800d] px-2 py-2.5 ring ring-brand-primary rounded-xs;
     }
 
     /* Typography theo size */
     .btn--sm {
-        @apply h-8 text-sm font-medium;
+        @apply h-8 text-sm;
     }
     .btn--md {
-        @apply h-9  text-sm font-semibold;
+        @apply h-9  text-sm;
     }
     .btn--lg {
-        @apply h-10 text-lg font-semibold;
+        @apply h-10 text-lg;
     }
 }

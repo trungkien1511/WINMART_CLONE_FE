@@ -1,6 +1,12 @@
 import React, { memo, useMemo, useCallback, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import Slide01 from '@assets/images/Slide01.png';
+import Slide02 from '@assets/images/Slide02.png';
+import Slide03 from '@assets/images/Slide03.png';
+import Slide04 from '@assets/images/Slide04.png';
+import SubBanner1 from '@assets/images/SubBanner1.png';
+import SubBanner2 from '@assets/images/SubBanner2.png';
 
 // Swiper styles
 import 'swiper/css';
@@ -14,24 +20,24 @@ const BANNER_DATA = {
     mainSlides: [
         {
             id: 1,
-            url: 'https://s3-hcmc02.higiocloud.vn/images/2025/10/home-page-867x400-20251024100157.jpg',
+            url: Slide01,
             alt: 'Banner khuyến mãi chính 1',
             link: '/promotion/sub-1'
         },
         {
             id: 2,
-            url: 'https://s3-hcmc02.higiocloud.vn/images/2025/10/home-banner-online-wcm1-20251024105322.png',
+            url: Slide02,
             alt: 'Banner khuyến mãi chính 2',
             link: '/promotion/sub-1'
         },
         {
             id: 3,
-            url: 'https://s3-hcmc02.higiocloud.vn/images/2025/10/group-16-20251023075535.jpg',
+            url: Slide03,
             alt: 'Banner khuyến mãi chính 3'
         },
         {
             id: 4,
-            url: 'https://s3-hcmc02.higiocloud.vn/images/2025/10/home-page-867x400-20251024100157.jpg',
+            url: Slide04,
             alt: 'Banner khuyến mãi chính 4',
             link: '/promotion/sub-1'
         }
@@ -39,13 +45,13 @@ const BANNER_DATA = {
     subBanners: [
         {
             id: 1,
-            url: 'https://s3-hcmc02.higiocloud.vn/images/2025/10/home-banner-online-wcm1-20251024105322.png',
+            url: SubBanner1,
             alt: 'Banner phụ 1',
             link: '/promotion/sub-1'
         },
         {
             id: 2,
-            url: 'https://s3-hcmc02.higiocloud.vn/images/2025/10/group-16-20251023075535.jpg',
+            url: SubBanner2,
             alt: 'Banner phụ 2',
             link: '/promotion/sub-2'
         }
@@ -165,7 +171,7 @@ const SubBanner = memo(({ banner, onClick }) => {
                 src={banner.url}
                 alt={banner.alt}
                 loading='lazy'
-                className='w-full h-full object-fill '
+                className='w-full h-full object-cover '
                 draggable={false}
             />
         </div>
@@ -177,8 +183,6 @@ SubBanner.displayName = 'SubBanner';
 // MAIN COMPONENT
 // ==============================
 const Banner = () => {
-    const [count, setCount] = useState(0);
-
     const handleBannerClick = useCallback((link) => {
         // Trong dự án thực tế, sử dụng router navigation
         // ví dụ: navigate(link) hoặc router.push(link)
@@ -191,13 +195,15 @@ const Banner = () => {
             <div className='grid grid-cols-4 gap-1.5 '>
                 {/* Left: Main Slider */}
                 <div className='col-span-3 row-span-2  '>
-                    <MainSlider onClick={handleBannerClick} />
+                    <div className='w-full aspect-21/9 overflow-hidden'>
+                        <MainSlider onClick={handleBannerClick} />
+                    </div>
                 </div>
 
                 {/* Right: Sub banners */}
                 <div className='flex flex-col col-span-1 row-span-2 gap-1.5 '>
                     {BANNER_DATA.subBanners.map((banner) => (
-                        <div key={banner.id} className='flex-1 min-h-0'>
+                        <div className='w-full aspect-14/9 overflow-hidden '>
                             <SubBanner banner={banner} onClick={handleBannerClick} />
                         </div>
                     ))}
