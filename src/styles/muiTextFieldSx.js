@@ -30,7 +30,8 @@ export const muiTextFieldSx = {
     /* LABEL */
     '& .MuiInputLabel-root': {
         fontSize: '12px',
-        fontWeight: 400
+        fontWeight: 400,
+        color: 'black'
     },
     '& .MuiInputLabel-root.Mui-focused': {
         color: 'black'
@@ -43,6 +44,11 @@ export const muiTextFieldSx = {
     },
     '& .MuiOutlinedInput-root.Mui-focused': {
         boxShadow: '0 0 8px rgba(59, 130, 246, 0.35)'
+    },
+
+    '& .MuiFormHelperText-contained': {
+        marginLeft: 0,
+        marginRight: 0
     }
 };
 

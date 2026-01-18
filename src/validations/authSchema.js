@@ -3,26 +3,32 @@ import * as yup from 'yup';
 export const loginSchema = yup.object({
     phoneNumber: yup
         .string()
-        .required('Vui lòng nhập số điện thoại')
-        .matches(/^0\d{9}$/, 'Số điện thoại phải có 10 số và bắt đầu bằng 0'),
-    password: yup.string().min(6, 'Mật khẩu ít nhất 6 ký tự').required('Vui lòng nhập mật khẩu')
+        .transform((value) => value?.replace(/\s+/g, '')) // ✅ bỏ mọi dấu cách
+        .required('Thông tin bắt buột')
+        .matches(/^0\d{9}$/, 'Số điện thoại không hợp lệ'),
+    password: yup.string().min(6, 'Mật khẩu ít nhất 6 ký tự').required('Thông tin bắt buột')
 });
 
 export const registerSchema = yup.object({
-    phoneNumber: yup.string().required('Vui lòng nhập họ tên'),
-    username: yup
+    phoneNumber: yup
         .string()
-        .required('Vui lòng nhập số điện thoại')
+        .transform((value) => value?.replace(/\s+/g, '')) // ✅ bỏ mọi dấu cách
+        .required('Thông tin bắt buột')
         .matches(/^0\d{9}$/, 'Số điện thoại không hợp lệ'),
-    password: yup.string().min(6, 'Mật khẩu ít nhất 6 ký tự').required('Vui lòng nhập mật khẩu'),
-    confirmPassword: yup
+    password: yup.string().min(6, 'Mật khẩu ít nhất 6 ký tự').required('Thông tin bắt buột'),
+    fullName: yup
         .string()
-        .oneOf([yup.ref('password'), null], 'Mật khẩu xác nhận không khớp'),
+        .required('Thông tin bắt buột')
+        .matches(/^[^\d]*$/, 'Họ tên không được chứa số'),
     birthday: yup
         .date()
-        .required('Vui lòng chọn ngày sinh')
-        .max(new Date(), 'Ngày sinh không hợp lệ'),
-    gender: yup.string().required('Vui lòng chọn giới tính'),
+        .required('Thông tin bắt buột')
+        .test('valid-date', 'Ngày sinh không hợp lệ', (v) => {
+            if (!v) return false;
+            const d = new Date(v);
+            return !Number.isNaN(d.getTime()) && d <= new Date();
+        }),
+    gender: yup.string().required('Thông tin bắt buột'),
     referralCode: yup.string().optional()
 });
 
